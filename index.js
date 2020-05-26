@@ -24,7 +24,8 @@ app.use(function(req, res, next) {
     console.log('connected to database');
 })
 
-  app.use(express.static('client/build'));
+
+app.use(express.static('client/build'));
 
   // For Routes
 app.use(express.urlencoded({ extended: true }));
@@ -32,8 +33,12 @@ app.use(express.json());
 
 // Use Routes
 app.use('/register',registerRoute);
-app.use('/',loginRoute);
+app.use('/login',loginRoute);
 app.use('/todos',todosRoute);
+
+app.get('/',(req,res)=>{
+  res.sendFile(path.join(__dirname,'client','build','index.html'));
+})
 
 app.listen(port,()=>{
     console.log(`listening on ${port}`);

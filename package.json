@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "K Mallikarjun",
   "license": "ISC",
@@ -17,5 +18,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.15",
     "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "~12.13.1",
+    "npm":"~6.12.1"
   }
 }
