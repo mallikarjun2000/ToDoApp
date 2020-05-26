@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
 })
 
 
-app.use(express.static('client/build'));
+app.use(express.static(path.join(__dirname,'client','build')));
 
   // For Routes
 app.use(express.urlencoded({ extended: true }));
