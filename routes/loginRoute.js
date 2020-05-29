@@ -13,10 +13,13 @@ router.get('/',async (req,res)=>{
 
 router.post('/',async (req,res)=>{
     const user = await userLogin.findOne({email:req.body.email});
-    if(!user) res.json({message:"user doesn't exist"});
+    if(!user) 
+    res.json({message:"user doesn't exist"});
+    else{
     const userDetail = await userDetails.findOne({email: req.body.email});
     const token = jwt.sign({_id: userLogin._id},process.env.TOKEN_SECRET);
     res.header('auth-token',token).json({message:'logined Succesfully',body:userDetail._id});
+    }
 })
 
 module.exports = router;

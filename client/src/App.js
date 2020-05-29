@@ -1,28 +1,37 @@
 import React from 'react';
 import logo from './logo.svg';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import { withRouter } from 'react-router-dom'
 import Main from './components/MainComponent';
+import Welcome from './components/WelcomeComponent';
+import Login from './components/LoginComponent';;
 
-function App() {
-  return (
-    <div className="App">
-      <Main/>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends React.Component {
+
+  componentDidMount()
+  {
+    if(localStorage.getItem('token'))
+    {
+          
+    }
+  }
+  render()
+  {
+    return (
+      <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path='/' exact component={Welcome} />
+          <Route path='/login' exact component={Login}/>
+          <Route path='/home' exact component={Main}/>
+        </Switch>
+      </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

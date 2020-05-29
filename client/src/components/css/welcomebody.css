@@ -1,0 +1,31 @@
+.wel-get-btn {
+    background-color: rgb(8, 241, 8);
+    color: white;
+}
+
+.wel-get-btn:hover{
+    background-color: transparent;
+    color: black;
+    border-color: red;
+}
+
+.welcome-btn :hover{
+    color: black;
+}
+
+.welcome-main-div{
+    /*background-image: url('../Assets/welcome_image.jpg');*/
+    height: 1000px;
+    object-fit: scale-down;
+    background-position: inherit;
+}
+
+.welcome-div-right {
+    
+}
+
+.welcome-div-left{
+    height: 500px;
+    padding-top: 130px;
+    width: 500px;
+}
