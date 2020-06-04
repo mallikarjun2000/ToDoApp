@@ -1,21 +1,28 @@
 import React from 'react';
 import logo from './logo.svg';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import { withRouter } from 'react-router-dom'
 import Main from './components/MainComponent';
-import Welcome from './components/WelcomeComponent';
-import Login from './components/LoginComponent';;
+import Home from './components/HomeComponent';
+import Welcome from './components/WelcomeComponent'
 
 
 
 class App extends React.Component {
 
+
+  constructor(props){
+    super(props);
+    this.state={
+      isLogged: false
+    }
+  }
+
   componentDidMount()
   {
-    if(localStorage.getItem('token'))
+    if(localStorage.getItem('token') != null)
     {
-          
     }
   }
   render()
@@ -24,9 +31,7 @@ class App extends React.Component {
       <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path='/' exact component={Welcome} />
-          <Route path='/login' exact component={Login}/>
-          <Route path='/home' exact component={Main}/>
+          <Main/>
         </Switch>
       </div>
       </BrowserRouter>

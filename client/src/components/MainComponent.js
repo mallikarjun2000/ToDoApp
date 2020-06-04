@@ -1,42 +1,39 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, NavbarBrand, Collapse, NavItem, NavbarToggler, Nav, NavLink, toggle } from 'reactstrap';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Welcome from './WelcomeComponent';
+import Login from './LoginComponent';
+import Home from './HomeComponent';
 
 class Main extends Component {
 
-  constructor(props){
-    super(props)
+  constructor(porps){
+    super(porps);
     this.state = {
-      isNavOpen : true
+      isLogged: false
     }
-    this.toggle = this.toggle.bind(this);
   }
 
-  toggle = () => this.setState({isNavOpen: !this.state.isNavOpen});
-  
+  componentDidMount(){
+    const token = localStorage.getItem('auth-token');
+    if(localStorage.getItem('auth-token')!='loggedOut')
+    {
+      this.setState({
+        isLogged: !this.state.isLogged
+      })
+    }
+  }
+
   render(){
+    if(this.state.isLogged)
+    return <Redirect to='/home'/>
+    
       return (
-        <div className="container">
-          <Navbar light expand="md">
-            <Link to='/home'>
-            <NavbarBrand className="nav-brand">ToDo App</NavbarBrand>
-            </Link>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isNavOpen} navbar>
-              <Nav className="nav">
-                <NavItem>
-                  <NavLink>
-                    Home
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink>
-                    About
-                  </NavLink>
-                </NavItem>
-              </Nav>
-            </Collapse>
-          </Navbar>
+        <div className="div">
+          <Switch>
+          <Route path='/' exact component={Welcome}/>
+          <Route path='/login' exact component={Login}/>
+          <Route path='/home' exact component={Home} />
+          </Switch>
         </div>
       );
   }

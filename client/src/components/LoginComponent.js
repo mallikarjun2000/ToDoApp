@@ -32,16 +32,19 @@ class Login extends Component {
           //console.log(this.state);
           e.preventDefault();
           this.setState({disableBtn: !this.state.disableBtn});
+          this.setState({disableBtn: !this.state.disableBtn});
           axios.post(url,{
               email: this.state.email,
               password: this.state.password
           })
           .then((res)=>{
               //console.log(res);
+              alert(res.data.message);
               if(res.data.message==='logined Succesfully')
               {
-
+                  localStorage.setItem('auth-token',res.data.body);
               }
+
               this.setState({disableBtn: !this.state.disableBtn});
           })
         }
@@ -76,7 +79,9 @@ class Login extends Component {
                             onChange={this.handleChange}
                             />
                         </FormGroup>
-                        <button type="submit" disabled={this.state.disableBtn} className="btn btn-success">Login</button>
+                    
+                        <button type="submit"  className="btn btn-success">Login</button>
+                
                     </Form>
                 </CardBody>
             </Card>
