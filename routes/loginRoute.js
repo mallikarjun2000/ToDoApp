@@ -28,7 +28,7 @@ router.post('/',async (req,res)=>{
             else{
             const userDetail = await userDetails.findOne({email: req.body.email});
             const token = jwt.sign({_id: userLogin._id},process.env.TOKEN_SECRET);
-            res.header('auth_token',token).json({message:'logined Succesfully',body:userDetail._id});
+            res.header('auth_token',token).json({message:'logined Succesfully',uid:userDetail._id,token:token});
             }
         }
         catch(err){
