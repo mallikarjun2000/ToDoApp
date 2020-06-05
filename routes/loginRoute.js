@@ -24,13 +24,11 @@ router.post('/',async (req,res)=>{
             const hashPassword = await bcrypt.compare(req.body.password, user.password);
             if(!hashPassword){
             res.send({message:"Email or Password Doesn't match"})
-            //console.log('password',hashPassword);
-            //console.log(user.password);
             }
             else{
             const userDetail = await userDetails.findOne({email: req.body.email});
             const token = jwt.sign({_id: userLogin._id},process.env.TOKEN_SECRET);
-            res.header('auth-token',token).json({message:'logined Succesfully',body:userDetail._id});
+            res.header('auth_token',token).json({message:'logined Succesfully',body:userDetail._id});
             }
         }
         catch(err){

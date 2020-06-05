@@ -17,7 +17,7 @@ class Home extends Component {
   }
 
   logout(){
-    localStorage.setItem('auth-token', 'loggedOut');
+    localStorage.setItem('auth-token',null);
     console.log(localStorage.getItem('auth-token'));
   }
   

@@ -27,27 +27,9 @@ class Login extends Component {
 
       handleLogin(e)
       {
-          const url = 'https://todolist-arjun.herokuapp.com/login/'
-          const local = 'https://localhost:1234/login';
-          //console.log(this.state);
           e.preventDefault();
-          this.setState({disableBtn: !this.state.disableBtn});
-          this.setState({disableBtn: !this.state.disableBtn});
-          axios.post(url,{
-              email: this.state.email,
-              password: this.state.password
-          })
-          .then((res)=>{
-              //console.log(res);
-              alert(res.data.message);
-              if(res.data.message==='logined Succesfully')
-              {
-                  localStorage.setItem('auth-token',res.data.body);
-              }
-
-              this.setState({disableBtn: !this.state.disableBtn});
-          })
-        }
+          this.props.loginUser({email: this.state.email, password: this.state.password});
+      }
   render(){
       return (
         <div className="container d-flex justify-content-center">
